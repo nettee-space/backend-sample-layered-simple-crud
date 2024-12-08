@@ -48,7 +48,7 @@ dependencies {
     testRuntimeOnly("com.h2database:h2")
 
     // flyway
-    implementation("org.flywaydb:flyway-core:11.0.1")
+    implementation("org.flywaydb:flyway-database-postgresql")
 
     // lombok
     compileOnly("org.projectlombok:lombok")
