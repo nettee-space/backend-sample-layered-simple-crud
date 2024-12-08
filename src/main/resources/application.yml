@@ -1,1 +1,28 @@
-spring.application.name=sample-layered-simple-crud
+spring:
+  application.name: sample-layered-simple-crud
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DEMO_POSTGRESQL_URL}
+    username: ${DEMO_POSTGRESQL_USERNAME}
+    password: ${DEMO_POSTGRESQL_PASSWORD}
+
+    # connection pool (usage: hikari pool)
+    hikari:
+      connection-timeout: 30_000
+      idle-timeout: 60_000
+      max-lifetime: 1_800_000
+      maximum-pool-size: 300
+      minimum-idle: 5
+      leak-detection-threshold: 2000
+
+  jpa:
+    properties:
+      hibernate:
+        format-sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true # profile 설정 안 해도 확인할 수 있도록 임시로 true 함.
+    hibernate:
+      ddl-auto: none # flyway 사용하면 none 또는 validate (엄격한 경우 validate)
+
+  flyway:
+    baseline-on-migrate: true # flyway schema history 테이블이 없다면 생성한다.
