@@ -61,6 +61,10 @@ public class BoardCommandService
 
     @Override
     public void delete(Long id) {
-        boardCommandRepository.deleteById(id);
+        Board board = boardCommandRepository
+                .findById(id)
+                .orElseThrow(/* TODO input exception function */);
+
+        board.setToDelete();
     }
 }
