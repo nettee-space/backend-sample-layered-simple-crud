@@ -7,7 +7,6 @@ public class BoardCommandException extends CustomException {
     // (intellij) Ctrl + O
     // (eclipse or sts) Alt Shift S => generate constructors
 
-
     public BoardCommandException(ErrorCode errorCode) {
         super(errorCode);
     }
