@@ -40,12 +40,6 @@ public final class BoardCommandDto {
     ) {}
 
     @Builder
-    public record BoardDeleteRequest(
-            @NotNull(message = "글 번호가 지정되지 않았습니다. 오류가 반복되면 고객센터에 문의하세요.")
-            Long id
-    ) {}
-
-    @Builder
     public record BoardCreateResponse(
             Board board
     ) {}
@@ -55,5 +49,5 @@ public final class BoardCommandDto {
             Board board
     ) {}
 
-    // No response to delete request
+    // No response body to delete request
 }

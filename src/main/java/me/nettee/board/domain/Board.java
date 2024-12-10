@@ -34,4 +34,8 @@ public class Board {
         this.title = title;
         this.content = content;
     }
+
+    public void setToDelete() {
+        this.status = BoardStatus.REMOVED;
+    }
 }
