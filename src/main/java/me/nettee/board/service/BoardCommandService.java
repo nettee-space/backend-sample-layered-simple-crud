@@ -48,13 +48,7 @@ public class BoardCommandService
 
     @Override
     public Board update(Long id, String title, String content) {
-        Board board = boardCommandRepository
-                .findById(id)
-                .orElseThrow(BoardCommandErrorCode.BOARD_NOT_FOUND::defaultException);
-
-        if (board.status() == BoardStatus.REMOVED) {
-            throw BoardCommandErrorCode.BOARD_GONE.defaultException();
-        }
+        Board board = findBoardById(id);
 
         board.prepareUpdate()
                 .title(title)
@@ -66,6 +60,16 @@ public class BoardCommandService
 
     @Override
     public void delete(Long id) {
+        Board board = findBoardById(id);
+
+        if (board.status() == BoardStatus.REMOVED) {
+            throw BoardCommandErrorCode.BOARD_GONE.defaultException();
+        }
+
+        board.setToDelete();
+    }
+
+    private Board findBoardById(Long id) {
         Board board = boardCommandRepository
                 .findById(id)
                 .orElseThrow(BoardCommandErrorCode.BOARD_NOT_FOUND::defaultException);
@@ -74,6 +78,6 @@ public class BoardCommandService
             throw BoardCommandErrorCode.BOARD_GONE.defaultException();
         }
 
-        board.setToDelete();
+        return board;
     }
 }
