@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.nettee.board.controller.dto.BoardCommandDto.BoardCreateRequest;
 import me.nettee.board.domain.Board;
 import me.nettee.board.domain.type.BoardStatus;
+import me.nettee.board.exception.BoardCommandErrorCode;
 import me.nettee.board.mapper.BoardDtoMapper;
 import me.nettee.board.repository.BoardCommandRepository;
 import me.nettee.board.usecase.BoardCreateUseCase;
@@ -31,7 +32,7 @@ public class BoardCommandService
     @Override
     public Board create(BoardCreateRequest request) {
         // 전처리 (DTO → Entity)
-        var now = Instant.now();
+        Instant now = Instant.now();
 //        var board = Board.builder()
 //                .title(request.title())
 //                .content(request.content())
@@ -39,7 +40,7 @@ public class BoardCommandService
 //                .createdAt(now)
 //                .updatedAt(now)
 //                .build();
-        var board = mapper.toEntity(request, BoardStatus.ACTIVE, now, now);
+        Board board = mapper.toEntity(request, BoardStatus.ACTIVE, now, now);
 
         // delegation
         return create(board);
@@ -47,9 +48,13 @@ public class BoardCommandService
 
     @Override
     public Board update(Long id, String title, String content) {
-        var board = boardCommandRepository
+        Board board = boardCommandRepository
                 .findById(id)
-                .orElseThrow(/* TODO input exception function */);
+                .orElseThrow(BoardCommandErrorCode.BOARD_NOT_FOUND::defaultException);
+
+        if (board.status() == BoardStatus.REMOVED) {
+            throw BoardCommandErrorCode.BOARD_GONE.defaultException();
+        }
 
         board.prepareUpdate()
                 .title(title)
@@ -63,7 +68,11 @@ public class BoardCommandService
     public void delete(Long id) {
         Board board = boardCommandRepository
                 .findById(id)
-                .orElseThrow(/* TODO input exception function */);
+                .orElseThrow(BoardCommandErrorCode.BOARD_NOT_FOUND::defaultException);
+
+        if (board.status() == BoardStatus.REMOVED) {
+            throw BoardCommandErrorCode.BOARD_GONE.defaultException();
+        }
 
         board.setToDelete();
     }

@@ -25,6 +25,10 @@ public class Board {
     private Instant createdAt;
     private Instant updatedAt;
 
+    public BoardStatus status() {
+        return status;
+    }
+
     @Builder(
             builderClassName = "UpdateBoardBuilder",
             builderMethodName = "prepareUpdate",
