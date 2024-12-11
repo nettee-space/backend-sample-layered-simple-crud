@@ -57,11 +57,14 @@ public class BoardCommandApi {
 //                .body(dto);
 //    }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public BoardUpdateResponse update(
+            @PathVariable("id")
+            @NotNull(message = "글 번호가 지정되지 않았습니다. 오류가 반복되면 고객센터에 문의하세요.")
+            Long id,
             @RequestBody @Valid BoardUpdateRequest request
     ) {
-        var board = boardUpdateUseCase.update(request.id(), request.title(), request.content());
+        var board = boardUpdateUseCase.update(id, request.title(), request.content());
 
         return BoardUpdateResponse.builder()
                 .board(board)
