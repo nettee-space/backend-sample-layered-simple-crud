@@ -8,7 +8,7 @@ import java.time.Instant;
 public final class BoardProjection {
 
     // 내부 클래스
-    @Builder
+    @Builder(toBuilder = true)
     public record BoardSummaryProjection(
             Long id,
             String title,
