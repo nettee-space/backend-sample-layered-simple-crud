@@ -6,7 +6,6 @@ import me.nettee.board.domain.Board;
 import me.nettee.board.domain.type.BoardStatus;
 import me.nettee.board.repository.projection.BoardProjection.BoardSummaryProjection;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.springframework.data.domain.Page;
 
 import java.time.Instant;
