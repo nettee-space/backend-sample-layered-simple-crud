@@ -63,11 +63,6 @@ public class BoardCommandService
     @Override
     public void delete(Long id) {
         Board board = findBoardById(id);
-
-        if (board.status() == BoardStatus.REMOVED) {
-            throw BoardCommandErrorCode.BOARD_GONE.defaultException();
-        }
-
         board.setToDelete();
     }
 
