@@ -14,7 +14,7 @@ public abstract class UuidBaseEntity implements Serializable {
     @GeneratedValue(generator = "uuid2")
     private UUID id;
 
-    public UUID id() {
+    public UUID getId() {
         return id;
     }
 }
