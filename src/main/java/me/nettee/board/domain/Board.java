@@ -3,11 +3,14 @@ package me.nettee.board.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import me.nettee.board.domain.type.BoardStatus;
+import me.nettee.common.jpa.support.BaseEntity;
 
 import java.time.Instant;
 
@@ -15,9 +18,7 @@ import java.time.Instant;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Board {
-    @Id
-    private Long id;
+public class Board extends BaseEntity {
     private String title;
     private String content;
     @Enumerated(EnumType.STRING)
