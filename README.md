@@ -7,18 +7,6 @@
 
 - 레이어드 아키텍처의 대표적인 구현을 따릅니다. (Controller - Service - Repository)
 - Spring Data JPA를 사용합니다.
-- 예외 처리
-  - interface ErrorCode를 사용합니다. (그리고 구현은 여러 enum으로 합니다.)
-  - Global Exception Handler를 사용합니다.
-- Command 작업 (INSERT, UPDATE, DELETE)
-  - JPA Repository 기반
-- Query 작업 (조회)
-  - JPA Repository 기반
-  - Record Projection 사용
-  - 단건 조회: Optional&lt;DetailProjection&gt;
-  - 목록 조회: List&lt;SummaryProjection&gt;
-    - 페이지 객체를 반드시 사용할 때만 Page&lt;SummaryProjection&gt;
-- 
 
 # Prerequisites
 
@@ -28,4 +16,42 @@
   If you install [docker desktop](https://www.docker.com/products/docker-desktop/),
   docker compose will be installed at the same time.
 
-# Installation
+# Installation & Execution
+
+Download project:
+
+```shell
+git clone git@github.com:nettee-space/sample-layered-simple-crud.git
+```
+
+도커를 실행하고, 프로젝트 경로에서 다음 명령을 입력합니다.
+
+```shell
+docker compose up -d
+```
+
+VM 옵션에 액티브 프로파일을 입력합니다.
+
+<details>
+<summary>액티브 프로파일 입력란이 있을 때</summary>
+
+다음을 입력합니다.
+
+```shell
+local
+```
+
+</details>
+
+<details>
+<summary>VM Option을 직접 입력할 때</summary>
+
+다음을 입력합니다.
+
+```shell
+-Dspring.profiles.active=local
+```
+
+</details>
+
+이제 실행할 준비가 완료되었습니다.
