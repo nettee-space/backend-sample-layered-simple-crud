@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.nettee.board.domain.type.BoardStatus;
 import me.nettee.common.jpa.support.BaseEntity;
@@ -18,6 +19,7 @@ import java.time.Instant;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Board extends BaseEntity {
     private String title;
     private String content;
