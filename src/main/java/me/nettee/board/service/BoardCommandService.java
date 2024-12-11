@@ -1,5 +1,6 @@
 package me.nettee.board.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import me.nettee.board.controller.dto.BoardCommandDto.BoardCreateRequest;
 import me.nettee.board.domain.Board;
@@ -46,6 +47,7 @@ public class BoardCommandService
         return create(board);
     }
 
+    @Transactional
     @Override
     public Board update(Long id, String title, String content) {
         Board board = findBoardById(id);
