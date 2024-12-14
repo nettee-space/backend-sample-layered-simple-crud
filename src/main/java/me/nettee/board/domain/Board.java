@@ -3,9 +3,6 @@ package me.nettee.board.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +11,7 @@ import me.nettee.board.domain.type.BoardStatus;
 import me.nettee.common.jpa.support.BaseEntity;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Builder
@@ -38,6 +36,9 @@ public class Board extends BaseEntity {
             buildMethodName = "update"
     )
     public void updateBoard(String title, String content) {
+        Objects.requireNonNull(title, "title cannot be null");
+        Objects.requireNonNull(content, "content cannot be null");
+
         this.title = title;
         this.content = content;
     }
