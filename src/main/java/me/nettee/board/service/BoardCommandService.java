@@ -60,6 +60,7 @@ public class BoardCommandService
         return board;
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
         Board board = findBoardById(id);
