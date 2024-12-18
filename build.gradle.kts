@@ -81,7 +81,10 @@ tasks.withType<Test> {
 }
 
 tasks.withType<JavaCompile> {
-    options.compilerArgs.addAll(listOf("--enable-preview", "-Amapstruct.defaultComponentModel=spring"))
+    options.compilerArgs.addAll(listOf(
+            "--enable-preview",
+            "-Amapstruct.defaultComponentModel=spring",
+    ))
 }
 
 tasks.withType<Test> {
