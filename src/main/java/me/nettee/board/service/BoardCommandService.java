@@ -64,7 +64,7 @@ public class BoardCommandService
     @Override
     public void delete(Long id) {
         Board board = findBoardById(id);
-        board.setToDelete();
+        board.softDelete();
     }
 
     private Board findBoardById(Long id) {
