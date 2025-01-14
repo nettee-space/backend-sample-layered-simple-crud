@@ -76,10 +76,6 @@ sourceSets {
     }
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
-
 tasks.withType<JavaCompile> {
     options.compilerArgs.addAll(listOf(
             "--enable-preview",
