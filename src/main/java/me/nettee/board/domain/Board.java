@@ -36,12 +36,13 @@ public class Board extends BaseEntity {
             builderMethodName = "prepareUpdate",
             buildMethodName = "update"
     )
-    public void updateBoard(String title, String content) {
+    public void updateBoard(String title, String content, Instant updatedAt) {
         Objects.requireNonNull(title, "title cannot be null");
         Objects.requireNonNull(content, "content cannot be null");
 
         this.title = title;
         this.content = content;
+        this.updatedAt = updatedAt != null ? updatedAt : Instant.now();
     }
 
     public void softDelete() {
