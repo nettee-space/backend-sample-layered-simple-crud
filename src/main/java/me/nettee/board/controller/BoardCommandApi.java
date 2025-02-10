@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/board")
+@RequestMapping("/boards")
 @Validated
 public class BoardCommandApi {
     private final BoardCreateUseCase boardCreateUseCase;
