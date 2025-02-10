@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface BoardQueryRepository extends JpaRepository<Board, Long> {
+    // find + 아무말 + By(WHERE) + 컬럼
     Optional<BoardDetailProjection> findBoardById(Long id);
 
     // NOTE 지금은 Page 객체로 그냥 반환받음. (성능 매우 느림)
