@@ -42,6 +42,7 @@ public class BoardCommandApi {
                 .build();
     }
 
+    // NOTE 샘플 코드이므로 비교 및 설명을 위해 남겨 둠.
 //    @PostMapping
 //    public ResponseEntity<BoardCreateResponse> create2(
 //            @RequestBody @Valid BoardCreateRequest request
